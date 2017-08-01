@@ -1,7 +1,7 @@
 TOP = ..
 include $(TOP)/configure/CONFIG
 
-DIRS += simDetectorNoIOC
+#DIRS += simDetectorNoIOC
 ifneq ($(EPICS_LIBCOM_ONLY),YES)
   DIRS += simDetectorIOC
 endif

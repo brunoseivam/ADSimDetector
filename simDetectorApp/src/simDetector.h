@@ -8,7 +8,8 @@
 /** Simulation detector driver; demonstrates most of the features that areaDetector drivers can support. */
 class epicsShareClass simDetector : public ADDriver {
 public:
-    simDetector(const char *portName, int maxSizeX, int maxSizeY, NDDataType_t dataType,
+    simDetector(const char *portName, std::string const & arrayName,
+                int maxSizeX, int maxSizeY, epics::pvData::ScalarType dataType,
                 int maxBuffers, size_t maxMemory,
                 int priority, int stackSize);
 
@@ -61,12 +62,12 @@ private:
     template <typename epicsType> int computeLinearRampArray(int sizeX, int sizeY);
     template <typename epicsType> int computePeaksArray(int sizeX, int sizeY);
     template <typename epicsType> int computeSineArray(int sizeX, int sizeY);
-    int computeImage();
+    NDArrayPtr computeImage(void);
 
     /* Our data */
     epicsEventId startEventId_;
     epicsEventId stopEventId_;
-    NDArray *pRaw_;
+    NDArrayPtr pRaw_;
     double *xSine1_;
     double *xSine2_;
     double *ySine1_;
